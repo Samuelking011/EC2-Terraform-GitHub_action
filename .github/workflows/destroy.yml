@@ -29,6 +29,8 @@ jobs:
         id:   apply
         env:
           TF_VAR_ec2_name:  "${{ github.event.inputs.ec2-name }}"
-        run: |
-          terraform init
-          terraform destroy -auto-approve
+       - name: Terraform Destroy
+      run: |
+        echo "** Running Terraform Destroy**"
+        terraform plan -destroy
+        terraform destroy -auto-approve
